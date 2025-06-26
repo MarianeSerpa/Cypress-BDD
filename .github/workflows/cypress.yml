@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Cache de dependências Node (opcional, melhora performance)
+      - name: Cache de dependências Node
         uses: actions/cache@v4
         with:
           path: ~/.npm

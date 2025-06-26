@@ -1,4 +1,4 @@
-Feature: Selecionar Produtos
+Feature: Selecionar Produtos para o carrinho
 
   Background: 
     Given que o usuario está na página principal
@@ -23,4 +23,6 @@ Feature: Selecionar Produtos
    And o usuario seleciona o produto
    And o usuario clica em "Adicionar ao carrinho" sem garantia estendida
    And o usuario altera a quantidade do produto no carrinho
+  Then  o sistema deve exibir o subtotal com 2 produtos
+
 

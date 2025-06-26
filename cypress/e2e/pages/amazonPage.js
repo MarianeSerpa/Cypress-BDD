@@ -10,7 +10,7 @@ class AmazonHomePage {
 }
 
 class SearchResultsPage {
-  verifyResults() {
+  verifyResultsVisible() {
     cy.get('.s-search-results').should('be.visible');
   }
 
@@ -18,56 +18,64 @@ class SearchResultsPage {
     cy.get('.s-search-results').should('be.visible');
     cy.get('.a-section.aok-relative.s-image-square-aspect')
       .first()
-      .should('be.visible')
       .click();
   }
 }
 
 class ProductDetailsPage {
-  verifyProductDetails() {
+  verifyProductInStock() {
     cy.get('#availability > .a-size-medium')
       .should('be.visible')
       .and('contain.text', 'Em estoque');
   }
 
   verifyCartAdditionMessage() {
-    cy.get('#attachDisplayAddBaseAlert > .a-box-inner > .a-alert-heading')
+    cy.get('#attachDisplayAddBaseAlert .a-alert-heading')
       .should('be.visible')
       .and('contain.text', 'Adicionado ao carrinho');
   }
 
-  verifyExclusao() {
+  verifyProductRemovedFromCart() {
     cy.get('.sc-list-item-removed-msg-delete')
       .should('be.visible')
       .and('contain.text', 'foi removido de Carrinho de compras.');
   }
 
-  clickButton() {
+  clickAddToCartButton() {
     cy.get('#add-to-cart-button')
       .should('be.visible')
       .click();
   }
 
-  clickButtonCarrinhoFinal() {
+  clickViewCartButton() {
     cy.get('#attach-sidesheet-view-cart-button') 
       .should('be.visible')
       .click();
   }
 
-  clickButtonNao() {
+  increaseProductQuantity() {
+    cy.get('[aria-label="Aumentar a quantidade em um"] > .a-icon') 
+      .should('be.visible')
+      .click();
+  }
+
+  declineExtendedWarranty() {
     cy.get('#attachSiNoCoverage')
       .should('be.visible')
       .click();
   }
 
-  clickButtonCarrinhoExcluir() {
+  clickRemoveFromCartButton() {
     cy.get('.sc-action-delete-active > .a-declarative > .a-color-link')
       .should('be.visible')
       .click();
   }
-  
 
+  verifyCartQuantity(quantity) {
+    cy.get('#sc-subtotal-label-activecart')
+      .should('be.visible')
+      .and('contain.text', `Subtotal (${quantity} produto${quantity > 1 ? 's' : ''})`);
+  }
 }
 
-// Exportar todas as classes
-export { AmazonHomePage, SearchResultsPage, ProductDetailsPage};
+export { AmazonHomePage, SearchResultsPage, ProductDetailsPage };
