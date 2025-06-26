@@ -12,22 +12,30 @@ jobs:
 
     steps:
       - name: Checkout do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configurar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      - name: Cache de dependências Node (opcional, melhora performance)
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
 
       - name: Executar testes Cypress
         run: npx cypress run
 
-      - name: Gerar artefatos (vídeos e screenshots)
-        if: failure()  # Só em caso de falha
-        uses: actions/upload-artifact@v3
+      - name: Gerar artefatos (vídeos e screenshots em caso de falha)
+        if: failure()
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-artifacts
           path: |
