@@ -7,11 +7,11 @@ const resultsPage = new SearchResultsPage();
 const detailsPage = new ProductDetailsPage();
 
 // -- Busca de Produto --
-Given('que o usuário está na página principal', () => {
+Given('que o usuario está na página principal', () => {
   homePage.visit();
 });
 
-When('o usuário insere {string} na barra de pesquisa', (produto) => {
+When('o usuario insere {string} na barra de pesquisa', (produto) => {
   homePage.searchProduct(produto);
 });
 
@@ -21,7 +21,7 @@ When('o usuario seleciona o produto', () => {
   detailsPage.verifyProductDetails();
 });
 
-When('o usuário clica em {string}', (botaoAdicionar) => {
+When('o usuario clica em {string} sem garantia estendida', (botaoAdicionar) => {
   // Dependendo do texto passado no parâmetro, decide qual botão clicar
   if (botaoAdicionar.toLowerCase().includes('carrinho')) {
     detailsPage.clickButton();  // botão "Adicionar ao carrinho"
@@ -29,13 +29,30 @@ When('o usuário clica em {string}', (botaoAdicionar) => {
     // Caso queira tratar outros botões, pode expandir aqui
     throw new Error(`Botão desconhecido: ${botaoAdicionar}`);
   }
-});
-
-When('o usuario não seleciona a garantia estendida', () => {
-  detailsPage.clickNoButtonNao();
+  detailsPage.clickButtonNao();
 });
 
 Then('o sistema deve exibir uma mensagem de confirmação de adição ao carrinho', () => {
+  cy.wait(5000);
   detailsPage.verifyCartAdditionMessage();
+  
+});
+
+
+When('o usuario remove o produto do carrinho', () => {
   detailsPage.clickButtonCarrinhoFinal();
+  detailsPage.clickButtonCarrinhoExcluir();
+
+});
+
+When('o sistema deve exibir uma mensagem de confirmação de exclusão do carrinho', () => {
+  detailsPage.verifyExclusao();
+});
+
+When('o usuario altera a quantidade do produto no carrinho', () => {
+ detailsPage.clickButtonCarrinhoFinal();
+
+
+
+ 
 });

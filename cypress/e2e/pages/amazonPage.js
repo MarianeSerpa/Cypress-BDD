@@ -1,6 +1,6 @@
 class AmazonHomePage {
   visit() {
-    cy.visit('https://www.amazon.com.br');
+    cy.visit('/');
   }
 
   searchProduct(product) {
@@ -10,53 +10,64 @@ class AmazonHomePage {
 }
 
 class SearchResultsPage {
-  clickFirstProduct() {
-    // Aguarda a seção de resultados estar visível
+  verifyResults() {
     cy.get('.s-search-results').should('be.visible');
-
-    // Seleciona o primeiro item com a classe específica e clica nele
-    cy.get('.a-section.aok-relative.s-image-square-aspect') // Seleciona a classe desejada
-      .first() // Seleciona o primeiro item que corresponde à classe
-      .should('be.visible') // Verifica se o item está visível
-      .click(); // Clica no item
-}
-  
-    verifyResults() {
-      cy.get('.s-search-results').should('be.visible');
-    }
   }
+
+  clickFirstProduct() {
+    cy.get('.s-search-results').should('be.visible');
+    cy.get('.a-section.aok-relative.s-image-square-aspect')
+      .first()
+      .should('be.visible')
+      .click();
+  }
+}
 
 class ProductDetailsPage {
   verifyProductDetails() {
     cy.get('#availability > .a-size-medium')
-    .should('be.visible')
-    .and('contain.text', 'Em estoque');
+      .should('be.visible')
+      .and('contain.text', 'Em estoque');
+  }
+
+  verifyCartAdditionMessage() {
+    cy.get('#attachDisplayAddBaseAlert > .a-box-inner > .a-alert-heading')
+      .should('be.visible')
+      .and('contain.text', 'Adicionado ao carrinho');
+  }
+
+  verifyExclusao() {
+    cy.get('.sc-list-item-removed-msg-delete')
+      .should('be.visible')
+      .and('contain.text', 'foi removido de Carrinho de compras.');
+  }
+
+  clickButton() {
+    cy.get('#add-to-cart-button')
+      .should('be.visible')
+      .click();
+  }
+
+  clickButtonCarrinhoFinal() {
+    cy.get('#attach-sidesheet-view-cart-button') 
+      .should('be.visible')
+      .click();
+  }
+
+  clickButtonNao() {
+    cy.get('#attachSiNoCoverage')
+      .should('be.visible')
+      .click();
+  }
+
+  clickButtonCarrinhoExcluir() {
+    cy.get('.sc-action-delete-active > .a-declarative > .a-color-link')
+      .should('be.visible')
+      .click();
+  }
   
-}
-verifyCartAdditionMessage() {
-  cy.get('#attachDisplayAddBaseAlert > .a-box-inner > .a-alert-heading')
-    .should('be.visible')
-    .and('contain.text', 'Adicionado ao carrinho');
+
 }
 
-clickButton() {
-  cy.get('#add-to-cart-button')
-    .should('be.visible') // Verifica se o botão está visível
-    .click(); // Clica no botão
-}
-
-clickButtonCarrinhoFinal() {
-  cy.get('#attach-close_sideSheet-link')
-    .should('be.visible') // Verifica se o botão está visível
-    .click(); // Clica no botão
-}
-clickNoButtonNao() {
-  cy.get('#attachSiNoCoverage')
-    .should('be.visible') // Verifica se o botão está visível
-    .click(); // Clica no botão
-}
-}
-
-
-// Exportar todas as classes em um único objeto
-export { AmazonHomePage, SearchResultsPage, ProductDetailsPage };
+// Exportar todas as classes
+export { AmazonHomePage, SearchResultsPage, ProductDetailsPage};
