@@ -35,7 +35,7 @@ Para executar o projeto, siga os passos abaixo:
 
 ## Preview de Resultados
 
-![](https://github.com/MarianeSerpa/Selenium-Java/blob/master/sucesso.gif)
+![](https://github.com/MarianeSerpa/Cypress-BDD/blob/master/cypress-web-tests%20-%20Google%20Chrome%202025-06-27%2015-36-10.gif)
 
 ## Pipeline
 <https://github.com/MarianeSerpa/Selenium-Java/actions> 
