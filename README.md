@@ -23,7 +23,7 @@ Este projeto de automação visa a realização de testes automatizados das func
 
 ## Dica
 
-- Para executar os testes instalar as dependecias do projeto use o comando "npm install"
+- Para executar os testes, deve se instalar as dependecias do projeto use o comando "npm install"
 
 
 ## Execução
