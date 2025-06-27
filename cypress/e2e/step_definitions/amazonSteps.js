@@ -29,7 +29,7 @@ When('o usuario clica em {string} sem garantia estendida', (botaoAdicionar) => {
 });
 
 Then('o sistema deve exibir uma mensagem de confirmação de adição ao carrinho', () => {
-  cy.get('#attachDisplayAddBaseAlert .a-alert-heading', { timeout: 10000 }) // espera até 10s se necessário
+  cy.get('.a-size-medium-plus', { timeout: 10000 }) // espera até 10s se necessário
     .should('be.visible')
     .and('contain.text', 'Adicionado ao carrinho');
 });

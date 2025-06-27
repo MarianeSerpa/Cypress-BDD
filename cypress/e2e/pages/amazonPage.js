@@ -48,7 +48,7 @@ class ProductDetailsPage {
   }
 
   clickViewCartButton() {
-    cy.get('#attach-sidesheet-view-cart-button') 
+    cy.get('#sw-gtc > .a-button-inner > .a-button-text')
       .should('be.visible')
       .click();
   }
