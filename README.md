@@ -19,7 +19,7 @@ Este projeto de automação visa a realização de testes automatizados das func
 - **Linguagem:** Java Script.
 
 ## IDE
-- **VScode:** Ambiente de desenvolvimento integrado utilizado para a construção e execução do projeto.
+- **Visual Studio Code:** Ambiente de desenvolvimento integrado utilizado para a construção e execução do projeto.
 
 ## Dica
 
@@ -35,7 +35,7 @@ Para executar o projeto, siga os passos abaixo:
 
 ## Preview de Resultados
 
-![](https://github.com/MarianeSerpa/Selenium-Java/blob/master/sucesso.gif)
+![](https://github.com/MarianeSerpa/Cypress-BDD/blob/master/cypress-web-tests-Google-Chrome-2025-06-27-15-36-10.gif)
 
 ## Pipeline
 <https://github.com/MarianeSerpa/Cypress-BDD/actions> 
